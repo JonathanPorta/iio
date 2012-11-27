@@ -1,0 +1,60 @@
+{	"attributes": {},
+	"entities": {
+		"User": {
+			"key": "user_id",
+			"properties": {
+				"user_id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"relationships": {
+				"cards": {
+					"type": "has_many",
+					"property": "user_id",
+					"to": {
+						"type": "Card",
+						"property": "user_id"
+					},
+					"back": "user"
+				}
+			}
+		},
+		"Card": {
+			"key": "card_id",
+			"properties": {
+				"card_id": {
+					"type": "string"
+				},
+				"user_id": {
+					"type": "string"
+				}
+			},
+			"relationships": {
+				"user": {
+					"type": "has_a",
+					"property": "user_id",
+					"to": {
+						"type": "User",
+						"property": "user_id"
+					},
+					"back": "cards"
+				}
+			}
+		},
+		"Location": {
+			"key": "location_id",
+			"properties": {
+				"location_id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"relationships": {}
+		}
+	}
+}

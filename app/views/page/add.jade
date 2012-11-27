@@ -1,0 +1,10 @@
+div(data-role="header")
+	a(ng-click="add()", data-icon="", class="ui-btn-right", href="#/locations") Cancel
+	h1 Add!
+	a(ng-click="add()", data-icon="plus", class="ui-btn-right", href="#/add") Add
+
+div(data-role="content")
+	form
+		div(data-role="fieldcontain",class="ui-hide-label")
+			label(for="username") Username:
+			input(type="text",name="username",id="username",value="",placeholder="Username")

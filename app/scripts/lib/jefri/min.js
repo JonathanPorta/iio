@@ -1,0 +1,1 @@
+../../../../../openhouse-node/JEFRi/js/core/lib/jefri.min.js
