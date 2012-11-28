@@ -1,10 +1,28 @@
-div(data-role="header")
-	a(ng-click="add()", data-icon="", class="ui-btn-right", href="#/locations") Cancel
-	h1 Add!
-	a(ng-click="add()", data-icon="plus", class="ui-btn-right", href="#/add") Add
+//-
+div(data-role="header", class="ui-header ui-bar-a")
+	a(ng-click="add()", data-icon="delete", class="ui-btn-left", href="#/locations") Cancel
+	h1(class="ui-title") Adding a place
+	a(ng-click="save()", data-icon="check", data-iconpos="right", class="ui-btn-right", href="#/locations") Save
 
 div(data-role="content")
 	form
 		div(data-role="fieldcontain",class="ui-hide-label")
-			label(for="username") Username:
-			input(type="text",name="username",id="username",value="",placeholder="Username")
+			label(for="name") name:
+			input(type="text",ng-model="name",name="username",id="name",placeholder="Name")
+
+		div(data-role="fieldcontain", class="ui-body ui-body-b")
+			fieldset(data-role="controlgroup", data-type="horizontal")
+				legend Usually open every day
+				label(for="hours-from") From:
+				select(id="hours-from")
+					option from:
+					include hours-options
+				label(for="hours-to") To:
+				select(id="hours-to")
+					option to:
+					include hours-options
+				a(ng-click="addException()", data-role="button") add exception
+
+		div(data-role="fieldcontain")
+			div(hour-exception, ng-repeat="exception in exceptions")
+				include hours-exceptions

@@ -1,0 +1,18 @@
+//-
+div(data-role="header", class="ui-header ui-bar-a")
+	h1(class="ui-title") My places
+	a(ng-click="add()", data-iconpos="right", data-icon="plus", class="ui-btn-right", href="#/add") Add
+
+.locations(data-role="content")
+	ul(listview="locations")
+		li(ng-repeat="location in locations")
+			a
+				h2 {{location.name()}}
+				p Open: {{location.isOpen}}
+
+div(data-role="footer", data-position="fixed").
+	<div data-role="navbar" data-iconpos="bottom" class="ui-navbar ui-mini" role="navigation">
+		<ul class="ui-grid-a">
+			<li class="ui-block-a"><a href="#/locations" ng-click="showOpen()" data-icon="star" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="bottom" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-bottom ui-btn-up-a {{showingOpenClass}}">Open now</a></li>
+			<li class="ui-block-b"><a href="#/locations" ng-click="showAll()"  data-icon="grid" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="bottom" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-bottom ui-btn-up-a {{showingAllClass}}">All</a></li>
+		</ul>

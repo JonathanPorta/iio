@@ -5,6 +5,6 @@
 			when('/add',       {templateUrl: 'views/add.html', controller: "LocationsAdd"}).
 			when('/locations', {templateUrl: 'views/location_list.html', controller: "Locations"}).
 			when('/users',     {templateUrl: 'views/user_list.html',     controller: "Users"}).
-			otherwise({redirectTo: '/users'});
+			otherwise({redirectTo: '/locations'});
 	}]);
 }).call(this);

@@ -1,14 +1,14 @@
-
 !!!
 <html lang="en" ng-app="iio">
 head
 		meta(charset="utf-8")
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		title Open House
 
 		link(rel="stylesheet", href="styles/iio.css")
-		link(rel="stylesheet", href="styles/lib/bootstrap.css")
+		//-link(rel="stylesheet", href="styles/lib/bootstrap.css")
 		link(rel="stylesheet", href="scripts/lib/$/mobile/jquery.mobile-1.2.0.min.css")
-		link(rel="stylesheet", href="styles/lib/jqm-2col.css")
+		//- link(rel="stylesheet", href="styles/lib/jqm-2col.css")
 
 		script(src="scripts/lib/$/min.js")
 		script(src="scripts/jqm-overrides.js")
@@ -26,25 +26,8 @@ head
 		script(src="scripts/lib/angular/ui/min.js")
 
 	body
-		div(data-role="page", class="type-interior", ng-view. ng-controller="Locations")
-			div(data-role="header")
-				h1 Header!
-				a(ng-click="add()", data-icon="plus", class="ui-btn-right", href="#/add") Add
+		div(data-role="page", ng-view, apply-jq-mobile)
 
-			.locations(data-role="content")
-				ul(listview="locations")
-					li(ng-repeat="location in locations")
-						a
-							h2 {{location.name()}}
-							p Open: {{location.isOpen}}
-
-			div(data-role="footer", data-position="fixed").
-				<div data-role="navbar" data-iconpos="bottom" class="ui-navbar ui-mini" role="navigation">
-					<ul class="ui-grid-a">
-						
-						<li class="ui-block-a"><a href="#/locations" ng-click="showOpen()" data-icon="plus" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="bottom" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-bottom ui-btn-up-a">Show Open</a></li>
-						<li class="ui-block-b"><a href="#/locations" ng-click="showAll()"  data-icon="plus" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="bottom" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-bottom ui-btn-up-a">Show All</a></li>
-					</ul>
 
 		#templates(ng:hide)
 			include ../templates.html

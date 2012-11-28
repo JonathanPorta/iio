@@ -1,0 +1,14 @@
+//-
+fieldset(data-role="controlgroup", data-type="horizontal")
+	label(for="weekday-1") on
+	select(id="weekday-1", data-mini="true")
+		option day of week
+		include weekdays-options
+	label(for="weekday-1-hours-from") from
+	select(id="weekday-1-hours-from", data-mini="true")
+		option from
+		include hours-options
+	label(for="weekday-1-hours-to") to
+	select(id="weekday-1-hours-to", data-mini="true")
+		option to
+		include hours-options
