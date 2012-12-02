@@ -14,15 +14,15 @@ div(data-role="content")
 			fieldset(data-role="controlgroup", data-type="horizontal")
 				legend Usually open every day
 				label(for="hours-from") From:
-				select(id="hours-from")
+				select(id="hours-from", data-mini="true")
 					option from:
 					include hours-options
 				label(for="hours-to") To:
-				select(id="hours-to")
+				select(id="hours-to", data-mini="true")
 					option to:
 					include hours-options
-				a(ng-click="addException()", data-role="button") add exception
+				a(ng-click="addException()", data-role="button", data-mini="true") add exception
 
 		div(data-role="fieldcontain")
-			div(hour-exception, ng-repeat="exception in exceptions")
+			div(jqm="exceptions", ng-repeat="exception in exceptions")
 				include hours-exceptions

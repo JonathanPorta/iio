@@ -10,7 +10,7 @@
 		};
 
 		$scope.showAll = function(){
-			console.log("SHowing alll");
+			console.log("Showing alll");
 			$scope.locations = tStore.get("Location");
 			$scope.showingAllClass = "ui-btn-active";
 			$scope.showingOpenClass = ""
@@ -21,12 +21,12 @@
 	};
 	angular.module('iio').controller('Locations', ['$scope', '$filter', 'JEFRi', 'TempStore', LocationsController]);
 
-//Location Filter Controller
+//Location Add Controller
 	var LocationAdd = function($scope,  $filter, JEFRi, tStore){
 		$scope.name="";
 		$scope.isOpen=false;
 
-		$scope.exceptions = [{weekday:"", from:"", to:""}];
+		$scope.exceptions = [];
 
 		$scope.save = function(){
 			var l = {name:function(){ return $scope.name}, isOpen:$scope.isOpen};
@@ -35,13 +35,32 @@
 		};
 
 		$scope.addException = function(){
-			var e = {weekday:"", from:"", to:""};
+			var e = {id:$scope.exceptions.length, weekday:"", from:"", to:""};
 			$scope.exceptions.push(e);
 			console.log("New exception hours: ", e);
 		};
 
+		$scope.delException = function(exception_id){
+			console.log("Going to delete id: ", exception_id);
+			for(i in $scope.exceptions)
+			{
+				if($scope.exceptions[i].id == exception_id)
+				{
+					$scope.exceptions[i]["deleted"] = true;
+					delete $scope.exceptions[i];
+				}
+			}
+		};
+
 	};
 	angular.module('iio').controller('LocationsAdd', ['$scope', '$filter',  'JEFRi', 'TempStore', LocationAdd]);
+
+//Exception Delete Controller
+	var ExceptionDelete = function($scope,  $filter, JEFRi, tStore, $routeParams){
+
+
+	};
+	angular.module('iio').controller('ExceptionDelete', ['$scope', '$filter',  'JEFRi', 'TempStore', '$routeParams', ExceptionDelete]);
 
 	directive = function($) {
 		return {
