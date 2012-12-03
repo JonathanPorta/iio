@@ -35,7 +35,7 @@
 		};
 
 		$scope.addException = function(){
-			var e = {id:$scope.exceptions.length, weekday:"", from:"", to:""};
+			var e = {id:$scope.exceptions.length, weekday:"", from:"", to:"", delException:function(){console.log('sdfsdf');}};
 			$scope.exceptions.push(e);
 			console.log("New exception hours: ", e);
 		};
@@ -47,7 +47,7 @@
 				if($scope.exceptions[i].id == exception_id)
 				{
 					$scope.exceptions[i]["deleted"] = true;
-					delete $scope.exceptions[i];
+					$scope.exceptions.splice(i, 1);
 				}
 			}
 		};
