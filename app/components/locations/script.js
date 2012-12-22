@@ -23,13 +23,14 @@
 
 //Location Add Controller
 	var LocationAdd = function($scope,  $filter, JEFRi, tStore){
+		$scope.locations = tStore.get("Location");
 		$scope.name="";
 		$scope.isOpen=false;
 
 		$scope.exceptions = [];
 
 		$scope.save = function(){
-			var l = {name:function(){ return $scope.name}, isOpen:$scope.isOpen};
+			var l = {id:$scope.exceptions.length, name:function(){ return $scope.name}, isOpen:$scope.isOpen};
 			tStore.add("Location", l);
 			console.log("New: ", l);
 		};
@@ -60,8 +61,9 @@
 
 
 	};
-	angular.module('iio').controller('ExceptionDelete', ['$scope', '$filter',  'JEFRi', 'TempStore', '$routeParams', ExceptionDelete]);
+	angular.module('iio').controller('ExceptionDelete', ['$scope', '$filter',  'JEFRi', 'TempStore', ExceptionDelete]);
 
+//Location List Directive
 	directive = function($) {
 		return {
 			restrict: 'E',
@@ -71,5 +73,40 @@
 		};
 	};
 	angular.module('iio').directive('locations', ['jQuery', directive]);
+
+//Location Details View Controller
+	var LocationDetailsController = function($scope, $filter, JEFRi, tStore, $routeParams){
+
+		$scope.locationId = $routeParams.locationId;
+
+		$scope.show = function(){
+			console.log("Showing one:", $scope.locationId);
+			$scope.locations = tStore.get("Location");
+			$scope.location = {};
+			for(i in $scope.locations)
+			{
+				if($scope.locations[i].id == $scope.locationId)
+				{
+					$scope.location = $scope.locations[i];
+					console.log('found location', $scope.location);
+				}
+			}
+		};
+
+		$scope.show();
+
+	};
+	angular.module('iio').controller('LocationDetails', ['$scope', '$filter', 'JEFRi', 'TempStore', '$routeParams', LocationDetailsController]);
+
+//Location Detail Directive
+	directive = function($) {
+		return {
+			restrict: 'A',
+			replace: true,
+			controller: "LocationDetails",
+			template: $.template('.locationDetails')
+		};
+	};
+	angular.module('iio').directive('locationDetails', ['jQuery', directive]);
 
 }).call(this);

@@ -1,0 +1,11 @@
+//-
+div(data-role="header", class="ui-header ui-bar-a", locationDetails)
+	a(data-iconpos="left", data-icon="back", class="ui-btn-left", href="#/locations") Back
+	h1(class="ui-title") {{location.name()}}
+
+div(data-role="content")
+	div(ng-hide="location.isOpen()")
+		h1 Opens in x hours.
+	div(ng-show="location.isOpen()")
+		h1 Open Now!
+		p Open for another x hours today.

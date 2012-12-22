@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 				files: {
 					'build/views/location_open.html' : 'app/views/list/location_open.jade',
 					'build/views/location_list.html' : 'app/views/list/location_list.jade',
+					'build/views/location_detail.html' : 'app/views/list/location_detail.jade',
 					'build/views/user_list.html' : 'app/views/list/user_list.jade',
 					'build/views/add.html' : 'app/views/page/add.jade'
 				}
