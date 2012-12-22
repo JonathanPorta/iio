@@ -54,7 +54,39 @@
 					"type": "string"
 				}
 			},
-			"relationships": {}
+			"relationships": {
+				"exceptions": {
+					"type": "has_many",
+					"property": "location_id",
+					"to": {
+						"type": "Exception",
+						"property": "location_id"
+					},
+					"back": "location"
+				}
+			}
+		},
+		"Exception": {
+			"key": "exception_id",
+			"properties": {
+				"exception_id": {
+					"type": "string"
+				},
+				"location_id": {
+					"type": "string"
+				}
+			},
+			"relationships": {
+				"location": {
+					"type": "has_a",
+					"property": "location_id",
+					"to": {
+						"type": "Location",
+						"property": "location_id"
+					},
+					"back": "exceptions"
+				}
+			}
 		}
 	}
 }
