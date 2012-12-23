@@ -9,3 +9,7 @@ div(data-role="content")
 	div(ng-show="location.isOpen()")
 		h1 Open Now!
 		p Open for another x hours today.
+	div
+		h2 Hours
+		div(ng-repeat="exception in location.exceptions()")
+			p exception

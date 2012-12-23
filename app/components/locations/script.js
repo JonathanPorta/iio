@@ -1,17 +1,17 @@
 (function(){
 
 //Location List Controller
-	var LocationsController = function($scope, $filter, JEFRi, tStore){
+	var LocationsController = function($scope, $filter, JEFRi, iio){
 		$scope.showOpen = function(){
 			console.log("Showing open!");
-			$scope.locations = $filter('isOpen')(tStore.get("Location"));
+			$scope.locations = $filter('isOpen')(iio.locations);
 			$scope.showingAllClass = "";
 			$scope.showingOpenClass = "ui-btn-active"
 		};
 
 		$scope.showAll = function(){
 			console.log("Showing alll");
-			$scope.locations = tStore.get("Location");
+			$scope.locations = iio.locations;
 			$scope.showingAllClass = "ui-btn-active";
 			$scope.showingOpenClass = ""
 		};
@@ -19,24 +19,24 @@
 		$scope.showOpen();
 
 	};
-	angular.module('iio').controller('Locations', ['$scope', '$filter', 'JEFRi', 'TempStore', LocationsController]);
+	angular.module('iio').controller('Locations', ['$scope', '$filter', 'JEFRi', 'iio', LocationsController]);
 
 //Location Add Controller
-	var LocationAdd = function($scope,  $filter, JEFRi, tStore){
-		$scope.locations = tStore.get("Location");
-		$scope.name="";
-		$scope.isOpen=false;
-
+	var LocationAdd = function($scope,  $filter, JEFRi, iio){
+		$scope.name = "";
 		$scope.exceptions = [];
 
 		$scope.save = function(){
-			var l = {id:$scope.exceptions.length, name:function(){ return $scope.name}, isOpen:$scope.isOpen};
-			tStore.add("Location", l);
-			console.log("New: ", l);
+			var l = iio.create("Location", {"name":$scope.name});
+			for(i in $scope.exceptions)
+			{
+				$scope.exceptions[i].location(l);
+			}
+			console.log("Savedish: ", l);
 		};
 
 		$scope.addException = function(){
-			var e = {id:$scope.exceptions.length, weekday:"", from:"", to:"", delException:function(){console.log('sdfsdf');}};
+			var e = iio.create("Exception", {});
 			$scope.exceptions.push(e);
 			console.log("New exception hours: ", e);
 		};
@@ -45,23 +45,16 @@
 			console.log("Going to delete id: ", exception_id);
 			for(i in $scope.exceptions)
 			{
-				if($scope.exceptions[i].id == exception_id)
+				if($scope.exceptions[i].id() == exception_id)
 				{
-					$scope.exceptions[i]["deleted"] = true;
+					$scope.exceptions[i].location(null);
 					$scope.exceptions.splice(i, 1);
 				}
 			}
 		};
 
 	};
-	angular.module('iio').controller('LocationsAdd', ['$scope', '$filter',  'JEFRi', 'TempStore', LocationAdd]);
-
-//Exception Delete Controller
-	var ExceptionDelete = function($scope,  $filter, JEFRi, tStore, $routeParams){
-
-
-	};
-	angular.module('iio').controller('ExceptionDelete', ['$scope', '$filter',  'JEFRi', 'TempStore', ExceptionDelete]);
+	angular.module('iio').controller('LocationsAdd', ['$scope', '$filter',  'JEFRi', 'iio', LocationAdd]);
 
 //Location List Directive
 	directive = function($) {
@@ -75,28 +68,18 @@
 	angular.module('iio').directive('locations', ['jQuery', directive]);
 
 //Location Details View Controller
-	var LocationDetailsController = function($scope, $filter, JEFRi, tStore, $routeParams){
-
-		$scope.locationId = $routeParams.locationId;
+	var LocationDetailsController = function($scope, $filter, JEFRi, iio, $routeParams){
 
 		$scope.show = function(){
-			console.log("Showing one:", $scope.locationId);
-			$scope.locations = tStore.get("Location");
-			$scope.location = {};
-			for(i in $scope.locations)
-			{
-				if($scope.locations[i].id == $scope.locationId)
-				{
-					$scope.location = $scope.locations[i];
-					console.log('found location', $scope.location);
-				}
-			}
+			$scope.locationId = $routeParams.locationId;
+			$scope.location = iio.lookup("Location", $scope.locationId).pop();
+			console.log("Showing one:", $scope.locationId, $scope.location);
 		};
 
 		$scope.show();
 
 	};
-	angular.module('iio').controller('LocationDetails', ['$scope', '$filter', 'JEFRi', 'TempStore', '$routeParams', LocationDetailsController]);
+	angular.module('iio').controller('LocationDetails', ['$scope', '$filter', 'JEFRi', 'iio', '$routeParams', LocationDetailsController]);
 
 //Location Detail Directive
 	directive = function($) {

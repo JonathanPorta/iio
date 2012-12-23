@@ -6,7 +6,7 @@ div(data-role="header", class="ui-header ui-bar-a")
 .locations(data-role="content")
 	ul(listview="locations")
 		li(jqm="locations", ng-repeat="location in locations")
-			a(href="#/locations/{{location.id}}")
+			a(href="#/locations/{{location.id()}}")
 				h2 {{location.name()}}
 				p Open: {{location.isOpen}}
 

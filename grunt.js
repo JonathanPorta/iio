@@ -129,7 +129,7 @@ module.exports = function(grunt) {
 					'build/scripts/lib/': 'app/scripts/lib/**',
 					'build/styles/lib/': 'app/styles/lib/**',
 //					'build/images/': 'app/images/**',
-					'build/entityContext.json': 'app/entityContext.json'
+					'build/iio.json': 'app/iio.json'
 				}
 			}
 		},
