@@ -7,7 +7,7 @@ angular.module('iio').
 			link : function($scope, el, attr) {
 				console.log("JQM::Watching: ", attr['jqm']);
 				$scope.$watch(attr['jqm'], function(){
-					console.log("added one!");
+					console.log("Update for ", attr['jqm']);
 					el.trigger('create');
 				});
 			}

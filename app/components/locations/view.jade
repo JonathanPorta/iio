@@ -8,7 +8,6 @@ div(data-role="header", class="ui-header ui-bar-a")
 		li(jqm="locations", ng-repeat="location in locations")
 			a(href="#/locations/{{location.id()}}")
 				h2 {{location.name()}}
-				p Open: {{location.isOpen}}
 
 div(data-role="footer", data-position="fixed").
 	<div data-role="navbar" data-iconpos="bottom" class="ui-navbar ui-mini" role="navigation">

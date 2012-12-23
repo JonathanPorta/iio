@@ -52,6 +52,12 @@
 				},
 				"name": {
 					"type": "string"
+				},
+				"open": {
+					"type": "string"
+				},
+				"close": {
+					"type": "string"
 				}
 			},
 			"relationships": {
@@ -73,6 +79,15 @@
 					"type": "string"
 				},
 				"location_id": {
+					"type": "string"
+				},
+				"day": {
+					"type": "string"
+				},
+				"open": {
+					"type": "string"
+				},
+				"close": {
 					"type": "string"
 				}
 			},

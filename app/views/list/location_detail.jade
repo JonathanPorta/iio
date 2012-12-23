@@ -4,12 +4,23 @@ div(data-role="header", class="ui-header ui-bar-a", locationDetails)
 	h1(class="ui-title") {{location.name()}}
 
 div(data-role="content")
-	div(ng-hide="location.isOpen()")
-		h1 Opens in x hours.
-	div(ng-show="location.isOpen()")
-		h1 Open Now!
-		p Open for another x hours today.
+	div(ng-hide="isOpen()")
+		h2 Closed!
+	div(ng-show="isOpen()")
+		h2 Open Now!
+		p Open for another <b>{{timeLeft().bigHand}} hours</b> and <b>{{timeLeft().littleHand}} minutes</b> today.
 	div
-		h2 Hours
-		div(ng-repeat="exception in location.exceptions()")
-			p exception
+		h3 Hours
+
+		table(class="table table-striped")
+			tr
+				td
+					b Daily
+				td
+					{{location.open() | niceTime}} until {{location.close() | niceTime}}
+
+			tr(ng-repeat="exception in location.exceptions() | orderBy:sortOn")
+				td
+					b {{exception.day() | niceDay}}
+				td
+					{{exception.open() | niceTime}} until {{exception.close() | niceTime}}

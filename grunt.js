@@ -127,6 +127,7 @@ module.exports = function(grunt) {
 					'build/scripts/jqm-overrides.js': 'app/scripts/js/jqm-overrides.js',
 					'build/scripts/': 'app/scripts/js/app.js',
 					'build/scripts/lib/': 'app/scripts/lib/**',
+					'build/styles/': 'app/styles/**',
 					'build/styles/lib/': 'app/styles/lib/**',
 //					'build/images/': 'app/images/**',
 					'build/iio.json': 'app/iio.json'

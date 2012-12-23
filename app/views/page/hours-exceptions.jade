@@ -1,15 +1,15 @@
 //-
 fieldset(data-role="controlgroup", data-type="horizontal")
-	a(ng-click="$parent.delException(exception.id)", data-role="button", data-mini="true", data-icon="delete", data-theme="a") &nbsp;
-	label(for="weekday-1") on
-	select(id="weekday-1", data-mini="true")
-		option day of week
+	a(ng-click="$parent.delException(exception.id())", data-role="button", data-mini="true", data-icon="delete", data-theme="a") &nbsp;
+	label(for="day-Exception") on
+	select(id="day-Exception", data-mini="true", ng-model="exception.day")
+		option(selected) day of week
 		include weekdays-options
-	label(for="weekday-1-hours-from") from
-	select(id="weekday-1-hours-from", data-mini="true")
-		option from
+	label(for="open-Exception") from
+	select(id="open-Exception", data-mini="true", ng-model="exception.open")
+		option(selected) from
 		include hours-options
-	label(for="weekday-1-hours-to") to
-	select(id="weekday-1-hours-to", data-mini="true")
-		option to
+	label(for="close-Exception") to
+	select(id="close-Exception", data-mini="true", ng-model="exception.close")
+		option(selected) to
 		include hours-options
